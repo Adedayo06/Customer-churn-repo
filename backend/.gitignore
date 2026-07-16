@@ -1,0 +1,8 @@
+# Local SQLite database of stored predictions
+churn.db
+*.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/

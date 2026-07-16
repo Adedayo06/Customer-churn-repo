@@ -1,0 +1,6 @@
+customer_id,credit_score,country,gender,age,tenure,balance,products_number,credit_card,active_member,estimated_salary
+15634602,619,France,Female,42,2,0.00,1,1,1,101348.88
+15647311,608,Spain,Female,41,1,83807.86,1,0,1,112542.58
+15619304,502,France,Male,42,8,159660.80,3,1,0,113931.57
+15701354,699,France,Female,39,1,0.00,2,0,0,93826.63
+15737888,850,Spain,Female,43,2,125510.82,1,1,1,79084.10
