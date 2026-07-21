@@ -1,0 +1,35 @@
+// Light/dark theme, persisted to localStorage and applied via a data-theme
+// attribute on <html>. Defaults to the OS preference on first visit.
+import { createContext, useContext, useEffect, useState } from "react";
+
+const KEY = "cc_theme";
+const ThemeContext = createContext(null);
+
+function initialTheme() {
+  const saved = localStorage.getItem(KEY);
+  if (saved === "light" || saved === "dark") return saved;
+  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState(initialTheme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem(KEY, theme);
+  }, [theme]);
+
+  const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggle, isDark: theme === "dark" }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  const ctx = useContext(ThemeContext);
+  if (!ctx) throw new Error("useTheme must be used within ThemeProvider");
+  return ctx;
+}

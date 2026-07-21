@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
+import ThemeToggle from "./ThemeToggle";
 
 const ANALYST_NAV = [
   { to: "/dashboard", label: "Dashboard", ico: "📊" },
@@ -58,7 +59,10 @@ export default function Layout() {
               </div>
             </div>
           </div>
-          <button className="btn btn-ghost btn-sm btn-block" onClick={handleLogout} style={{ marginTop: "0.6rem" }}>
+          <div style={{ marginTop: "0.6rem" }}>
+            <ThemeToggle />
+          </div>
+          <button className="btn btn-ghost btn-sm btn-block" onClick={handleLogout} style={{ marginTop: "0.5rem" }}>
             Log out
           </button>
         </div>

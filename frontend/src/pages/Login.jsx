@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function Login() {
   const { login } = useAuth();
@@ -31,13 +32,13 @@ export default function Login() {
             Know who's<br />leaving, before<br />they do.
           </h1>
           <p className="auth-sub">
-            Predict customer churn, score them one-by-one or in bulk, and watch the
-            trends unfold — all in one place.
+            Predict customer churn, score them one-by-one or in batches, and watch the
+            trends unfold.
           </p>
           <ul className="auth-points">
             <li><span className="dot">✓</span> Individual & batch churn scoring</li>
             <li><span className="dot">✓</span> Daily, weekly & monthly trends</li>
-            <li><span className="dot">✓</span> Role-based analyst & admin views</li>
+            <li><span className="dot">✓</span> Get better insights on your customers</li>
           </ul>
         </div>
         <div style={{ opacity: 0.75, fontSize: "0.85rem" }}>
@@ -46,6 +47,9 @@ export default function Login() {
       </section>
 
       <section className="auth-formside">
+        <div className="auth-toggle">
+          <ThemeToggle variant="icon" />
+        </div>
         <div className="auth-card">
           <h2 style={{ fontSize: "1.7rem", fontWeight: 800 }}>Welcome back</h2>
           <p className="muted" style={{ marginTop: "0.35rem", marginBottom: "1.3rem" }}>

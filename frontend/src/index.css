@@ -35,6 +35,50 @@
   --font-head: "Sora", var(--font-body);
 }
 
+/* ============================================================
+   Dark theme — overrides the neutral surface variables. Brand red
+   stays; accent tints get dark, readable variants.
+   ============================================================ */
+:root[data-theme="dark"] {
+  --white: #211d23;        /* surfaces: cards, inputs, sidebar, ghost buttons */
+  --bg: #151317;           /* page background */
+  --panel: #211d23;        /* cards */
+  --ink: #f3eef2;
+  --ink-soft: #cdc5cc;
+  --muted: #948b95;
+  --border: #322c35;
+  --border-strong: #423a45;
+
+  --red-tint: #3a2026;     /* accent chip / active-nav background */
+  --red-tint-2: #4d2a32;
+  --green-tint: #16332b;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* Accents that need brighter foregrounds on dark surfaces */
+:root[data-theme="dark"] .badge-churn { background: rgba(255, 45, 67, 0.16); color: #ff8a95; }
+:root[data-theme="dark"] .badge-stay { background: rgba(34, 211, 126, 0.16); color: #59e3a3; }
+:root[data-theme="dark"] .nav-item.active { background: rgba(255, 45, 67, 0.14); color: #ff8a95; }
+:root[data-theme="dark"] .avatar { background: rgba(255, 45, 67, 0.16); color: #ff8a95; }
+:root[data-theme="dark"] .ico-red { background: rgba(255, 45, 67, 0.16); color: #ff8a95; }
+:root[data-theme="dark"] .ico-green { background: rgba(34, 211, 126, 0.16); color: #59e3a3; }
+:root[data-theme="dark"] .ico-ink { background: #2c2730; color: var(--ink); }
+:root[data-theme="dark"] .error-msg { background: rgba(255, 45, 67, 0.14); color: #ff9aa4; border-color: rgba(255, 45, 67, 0.3); }
+:root[data-theme="dark"] .info-banner { background: #2e2716; color: #e0b774; border-color: #453a1f; }
+:root[data-theme="dark"] table.tbl tbody tr:hover,
+:root[data-theme="dark"] table.tbl tr:hover { background: #29242e; }
+:root[data-theme="dark"] input::placeholder { color: #6c6470; }
+:root[data-theme="dark"] .role-toggle button.active { background: var(--panel); color: #ff8a95; }
+:root[data-theme="dark"] .theme-toggle:hover { border-color: #ff8a95; color: #ff8a95; }
+/* Keep the batch hint card a light-red accent even in dark mode */
+:root[data-theme="dark"] .hint-float { background: #3a2026; border-color: var(--red-700); }
+:root[data-theme="dark"] .hint-float h4,
+:root[data-theme="dark"] .hint-float p { color: #ffb3bb !important; }
+:root[data-theme="dark"] .hint-float code { background: #1a1518 !important; color: var(--ink); }
+
 * { box-sizing: border-box; }
 
 html, body, #root { height: 100%; }
@@ -86,6 +130,34 @@ a:hover { text-decoration: underline; }
 .btn-danger:hover { background: var(--red); color: #fff; border-color: var(--red); }
 .btn-sm { padding: 0.45rem 0.8rem; font-size: 0.85rem; border-radius: 9px; }
 .btn-block { width: 100%; }
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  background: var(--bg);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  transition: border 0.15s ease, background 0.15s ease;
+}
+.theme-toggle:hover { border-color: var(--red); color: var(--red-600); }
+.theme-toggle-icon {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 12px;
+  font-size: 1.15rem;
+}
+.auth-toggle { position: absolute; top: 1.5rem; right: 1.5rem; z-index: 5; }
 
 /* ---------- Forms ---------- */
 label.field { display: block; margin-bottom: 1rem; }
@@ -193,6 +265,7 @@ input::placeholder { color: #bcb3b6; }
   align-items: center;
   justify-content: center;
   padding: 2.5rem;
+  position: relative;
 }
 .auth-card { width: 100%; max-width: 400px; }
 .brand-logo { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-head); font-weight: 800; font-size: 1.4rem; }

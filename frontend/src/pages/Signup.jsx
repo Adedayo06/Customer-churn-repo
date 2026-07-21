@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
+import ThemeToggle from "../components/ThemeToggle";
 
 export default function Signup() {
   const { signup } = useAuth();
@@ -41,6 +42,9 @@ export default function Signup() {
       </section>
 
       <section className="auth-formside">
+        <div className="auth-toggle">
+          <ThemeToggle variant="icon" />
+        </div>
         <div className="auth-card">
           <h2 style={{ fontSize: "1.7rem", fontWeight: 800 }}>Create account</h2>
           <p className="muted" style={{ marginTop: "0.35rem", marginBottom: "1.3rem" }}>
